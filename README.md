@@ -29,6 +29,25 @@ The browser zips are attached as assets on the
 [playwright-browsers release](https://github.com/chihkeong/useful/releases/tag/playwright-browsers)
 (not committed to git — GitHub rejects files over 100 MB in a normal push).
 
+### Integrity verification (verify after download on the target machine)
+
+The Chromium zips were cross-verified against both Playwright's CDN and Google's
+Chrome for Testing bucket (`storage.googleapis.com/chrome-for-testing-public`);
+FFmpeg against Playwright's CDN only (it is a Playwright-built binary with no
+second official source).
+
+```bash
+cat > SHA256SUMS <<'EOF'
+ae8736ac28bc69278551500f219fc749575648263c43ec5990749eff43b9fcf8  chrome-linux64.zip
+3cfc2bd00d1bafcf8a68dc74c9c92bb7150ddc8d26ade948a776316e1cec4f14  chrome-headless-shell-linux64.zip
+ebc74fc5b94830176a3c2914ae96bd8bc7f6a91f4f33890230f84a172ee61ccc  ffmpeg-linux.zip
+5c4735937844e84f8a93306e841a5b0e12252909b07870f789b190468da147ab  claude-linux-x64-2.1.278
+EOF
+sha256sum -c SHA256SUMS
+```
+
+All four lines must print `OK` before installing.
+
 ### Step 1 — Download the zips (internet-connected side)
 
 ```bash
