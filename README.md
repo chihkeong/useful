@@ -2,6 +2,25 @@
 
 Offline transfer artifacts for air-gapped machines.
 
+## Install Claude Code on an air-gapped Kali Linux machine
+
+Binary: `claude-linux-x64-2.1.278` — attached on the
+[claude-code-2.1.278 release](https://github.com/chihkeong/useful/releases/tag/claude-code-2.1.278).
+
+```bash
+wget https://github.com/chihkeong/useful/releases/download/claude-code-2.1.278/claude-linux-x64-2.1.278
+chmod +x claude-linux-x64-2.1.278
+sudo mv claude-linux-x64-2.1.278 /usr/local/bin/claude   # or ~/.local/bin/claude (must be on PATH)
+claude --version   # should print 2.1.278
+```
+
+Notes:
+- The binary is dynamically linked (`ld-linux-x86-64.so.2`) — standard Kali x86-64
+  libraries are sufficient; no runtime install needed.
+- First run needs either an API key / login session set up beforehand, or whatever
+  credentials your air-gap policy allows (e.g. a proxy endpoint via environment
+  variables such as `ANTHROPIC_BASE_URL` / `ANTHROPIC_AUTH_TOKEN`).
+
 ## Install Playwright Chromium on an air-gapped Kali Linux machine
 
 Target: Playwright Chromium 151.0.7922.34 (browser build **1234**) + headless shell + FFmpeg (build **1011**), linux64.
